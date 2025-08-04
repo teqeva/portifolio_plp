@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Curved Shape with Glowing Image</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+display: flex;
+flex-direction: column;
+height: 100vh;
+background-color: #ffa64c;
+overflow: auto;
+align-items: flex-start;
+justify-content: flex-start;
+font-family: 'Orbitron', sans-serif;
+}
+
+.curve-wrapper {
+background-color: #001F3F;
+width: 610px;
+height: 90%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+border: 6px double hotpink;
+border-radius: 0 0 0 0;
+transition: border-radius 0.4s ease;
+padding: 0px;
+margin: 5px;
+margin-top: 5px;
+}
+
+.curve-shape {
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+justify-content: flex-start;
+gap: 30px;
+width: 100%;
+}
+
+.curve-wrapper:hover {
+border-radius: 0 100% 60% 0;
+}
+
+.curve-wrapper:hover .curve-shape {
+border-radius: 0 80% 40% 0;
+}
+
+.image-wrapper {
+width: 260px;
+height: 280px;
+margin-right: -63px;
+border-radius: 12px;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+background: radial-gradient(circle, white 0%, #001F3F 80%);
+box-shadow: 0 0 20px 10px rgba(255,255,255,0.2);
+transition: all 0.6s ease;
+}
+
+.image-wrapper img {
+width: 90%;
+height: 100%;
+object-fit: cover;
+object-position: top left;
+border-radius: 12px;
+transition: transform 0.4s ease;
+transform-origin: top center;
+}
+
+.curve-wrapper:hover .image-wrapper {
+height: 250px;
+width: 200px;
+background: radial-gradient(circle, white 0%, #001F3F 95%);
+box-shadow: 0 0 30px 20px rgba(255,255,255,0.25);
+}
+
+
+.text-stack {
+display: flex;
+flex-direction: column;
+gap: 15px;
+max-width: 360px;
+}
+
+.eva-line {
+font-size: 1.4rem;
+color: #eee;
+font-weight: 500;
+transition: font-size 0.4s ease;
+margin-left: 38px;
+}
+
+.eva-name {
+font-family: 'Poppins', sans-serif;
+font-size: 2rem;
+font-weight: 700;
+color: #FF69B4;
+transition: font-size 0.4s ease;
+}
+
+.eva-role {
+font-family: 'Share Tech Mono', monospace;
+font-size: 3.8rem;
+font-weight: 600;
+color: #00FFFF;
+transition: font-size 0.4s ease;
+}
+
+
+/* Shrink text on hover */
+.curve-wrapper:hover .eva-line {
+font-size: 1.2rem;
+}
+
+.curve-wrapper:hover .eva-name {
+font-size: 1.6rem;
+}
+
+.curve-wrapper:hover .eva-role {
+font-size: 4.2rem;
+max-width: 760px;
+
+}
+
+.curve-details {
+color: rgb(200, 200, 200);
+font-size: 0.85rem;
+font-weight: 600;
+line-height: 2.8;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.5s ease, transform 0.5s ease;
+margin-top: 30px;
+margin-left: 20px;
+margin-right: 30px;
+max-width: 520px;
+word-spacing: 5px;
+letter-spacing: 0.7px;
+}
+
+.curve-wrapper:hover .curve-details {
+opacity: 1;
+transform: translateY(0);
+}
+
+.amber-joke {
+position: absolute;
+top: 30px;
+right: 40px;
+white-space: nowrap;
+color: #001F3F;
+font-size: 1.1rem;
+font-weight: 600;
+background-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.curve-shape {
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-wrapper {
+    width: 200px;
+    height: 240px;
+}
+
+.text-stack {
+    max-width: 90%;
+    padding-top: 20px;
+    align-items: center;
+}
+
+.eva-line {
+    font-size: 3.1rem;
+    text-align: center;
+}
+
+.curve-details {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.curve-wrapper {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    margin: 0;
+}
+
+.amber-joke {
+    padding: 20px;
+    margin-left: 0;
+}
+}
+.amber-summary-block {
+position: absolute;
+top: 20px;
+right: 40px;
+height: 530px;
+max-width: 820px;
+background-color: #b77928;
+padding: 20px;
+border-radius: 74px;
+box-shadow: 0 0 12px rgba(0,0,0,0.1);
+font-family: 'Poppins', sans-serif;
+}
+
+.joke-text {
+font-size: 1.6rem;
+font-weight: 700;
+color: #001F3F;
+line-height: 1.5;
+text-align: right;
+}
+
+.pause-dots {
+font-size: 2rem;
+letter-spacing: 8px;
+color: #001F3F;
+display: inline-block;
+}
+
+.punchline {
+font-size: 1.8rem;
+color: #FF69B4;
+display: block;
+margin-top: 10px;
+text-align: right;
+}
+
+.joke-divider {
+margin: 15px 0;
+border-bottom: 2px dotted #FF69B4;
+}
+
+.joke-summary {
+font-size: 0.95rem;
+color: #333;
+line-height: 1.6;
+text-align: right;
+margin-bottom: 15px;
+}
+
+.contact-links {
+display: flex;
+flex-direction: column;
+gap: 10px;
+align-items: flex-end;
+}
+
+.contact-icon {
+font-size: 0.95rem;
+font-weight: 600;
+color: #fff;
+padding: 6px 14px;
+border-radius: 20px;
+text-decoration: none;
+transition: all 0.3s ease;
+}
+
+.contact-icon i {
+margin-right: 8px;
+}
+
+.contact-icon:hover {
+box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+}
+
+    .education-section {
+color: #eee;
+margin: 30px 20px;
+padding: 20px;
+border-top: 2px solid #FF69B4;
+width: calc(100% - 40px);
+}
+
+.education-section {
+color: #eee;
+margin: 30px 20px;
+padding: 20px;
+background-color: #002244;
+border-radius: 14px;
+width: calc(100% - 40px);
+box-shadow: 0 0 10px rgba(0,255,255,0.2);
+}
+
+.education-section h3 {
+font-family: 'Orbitron', sans-serif;
+font-size: 1.5rem;
+margin-bottom: 30px;
+color: #FF69B4;
+}
+
+.timeline {
+position: relative;
+margin-left: 20px;
+padding-left: 25px;
+border-left: 3px solid #00FFFF;
+}
+
+.timeline-item {
+position: relative;
+padding-left: 20px;
+margin-bottom: 40px;
+}
+
+.circle {
+position: absolute;
+left: -11px;
+top: 4px;
+width: 16px;
+height: 16px;
+background-color: #00FFFF;
+border: 2px solid #002244;
+border-radius: 50%;
+z-index: 1;
+}
+
+.timeline-content h4 {
+color: #FF69B4;
+font-family: 'Poppins', sans-serif;
+font-size: 1.1rem;
+margin-bottom: 6px;
+}
+
+.timeline-content p {
+font-size: 0.9rem;
+line-height: 1.6;
+color: #ccc;
+margin-bottom: 6px;
+}
+
+.skills-section {
+margin: 30px 20px;
+padding: 20px;
+background-color: #001a33;
+border-radius: 14px;
+width: calc(100% - 40px);
+color: #eee;
+}
+
+.skills-section h3 {
+font-family: 'Orbitron', sans-serif;
+font-size: 1.5rem;
+margin-bottom: 25px;
+color: #FF69B4;
+border-bottom: 1px solid #334d66;
+padding-bottom: 8px;
+}
+
+.skills-row {
+display: flex;
+gap: 30px;
+align-items: flex-start;
+justify-content: space-between;
+flex-wrap: wrap;
+}
+
+.skills-category {
+flex: 1;
+min-width: 260px;
+}
+
+.skills-divider {
+width: 2px;
+height: auto;
+background-image: repeating-linear-gradient(
+    to bottom,
+    #FF69B4,
+    #FF69B4 4px,
+    transparent 4px,
+    transparent 8px
+);
+align-self: stretch;
+opacity: 0.8;
+}
+
+.category-title {
+font-size: 1.2rem;
+color: #00FFFF;
+font-family: 'Poppins', sans-serif;
+margin-bottom: 8px;
+}
+
+.category-desc {
+font-size: 0.9rem;
+color: #bbb;
+margin-bottom: 14px;
+max-width: 500px;
+line-height: 1.6;
+}
+
+.skills-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+.skill {
+padding: 8px 14px;
+border-radius: 20px;
+background-color: #002744;
+color: #d9d9d9;
+font-size: 0.88rem;
+font-weight: 500;
+border: 1px solid #334d66;
+transition: all 0.3s ease;
+cursor: default;
+}
+
+.skill:hover {
+background-color: #003355;
+border-color: #FF69B4;
+box-shadow: 0 0 8px 2px #ff69b46b;
+}
+
+.skill.orbitron {
+font-family: 'Orbitron', sans-serif;
+}
+.skill.poppins {
+font-family: 'Poppins', sans-serif;
+}
+.skill.mono {
+font-family: 'Share Tech Mono', monospace;
+}
+.experience-section {
+margin: 30px 20px;
+padding: 20px;
+background-color: #001a33;
+border-radius: 14px;
+width: calc(100% - 40px);
+color: #eee;
+}
+
+.experience-section h3 {
+font-family: 'Orbitron', sans-serif;
+font-size: 1.5rem;
+margin-bottom: 25px;
+color: #FF69B4;
+border-bottom: 1px solid #334d66;
+padding-bottom: 8px;
+}
+
+.experience-timeline {
+display: flex;
+flex-direction: column;
+gap: 40px;
+position: relative;
+}
+
+.experience-item {
+position: relative;
+padding: 15px 20px;
+margin-bottom: 10px;
+background-color: #002944;
+border-radius: 10px;
+box-shadow: none;
+transition: box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+box-shadow: 0 0 12px 3px rgba(0, 255, 255, 0.3);
+}
+
+.experience-item::before {
+content: "";
+position: absolute;
+top: 15px;
+width: 14px;
+height: 14px;
+background-color: #00FFFF;
+border: 2px solid #001F3F;
+border-radius: 50%;
+z-index: 2;
+}
+
+.experience-item.left {
+align-self: flex-start;
+border-bottom: 2px dashed #00FFFF;
+padding-left: 30px;
+}
+
+.experience-item.left::before {
+left: -9px;
+}
+
+.experience-item.right {
+align-self: flex-end;
+border-bottom: 2px dashed #FF69B4;
+padding-right: 30px;
+text-align: left;
+}
+
+.experience-item.right::before {
+right: -9px;
+left: auto;
+}
+
+.role-title {
+color: #FF69B4;
+font-family: 'Poppins', sans-serif;
+font-size: 1.1rem;
+margin-bottom: 6px;
+}
+
+.org-time {
+font-size: 0.88rem;
+font-weight: 600;
+color: #00FFFF;
+margin-bottom: 6px;
+}
+
+.role-desc {
+font-size: 0.9rem;
+color: #ccc;
+line-height: 1.6;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="curve-wrapper">
+    <div class="curve-shape">
+    <div class="image-wrapper">
+        <img src="my.jpg" alt="Image" />
+    </div>
+    <div class="text-stack">
+        <div class="right-intro">
+        <p class="eva-line">I'm <span class="eva-name">Eva</span>, an
+            <span class="eva-role"> ethical hacker</span>.</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="curve-details">
+    <p>My learning has been mostly self-taught, with practical skills in Wireshark, Nmap, shell scripting, and networking. I enjoy ethical hacking because it lets me explore how systems work — and how to make them stronger.</p>
+    <p>I’ve also learned Python, HTML, and CSS, and I’m currently studying Software Engineering through the Power Learn Project to expand my knowledge and build real-world applications.</p>
+    </div>
+</div>
+
+<div class="amber-summary-block">
+<p class="joke-text">
+    🤔 <strong>What do ethical hackers eat for lunch?</strong><br/>
+    <span class="pause-dots">. . . . .</span><br/>
+    <span class="punchline">🍽️ Phish & Chips.</span>
+</p>
+
+<div class="joke-divider"></div>
+
+<p class="joke-summary">
+    Practical experience in network analysis, cybersecurity tools, and scripting. Currently pursuing a BSc. in IT at JKUAT and expanding my knowledge through software engineering and AI programs.
+</p>
+
+<div class="contact-links">
+<a href="github.com/teqeva" target="_blank" class="contact-icon">
+    <i class="fab fa-github"></i> GitHub
+</a>
+<a href="www.linkedin.com/in/eva-muthoni-a94355348" target="_blank" class="contact-icon">
+    <i class="fab fa-linkedin"></i> LinkedIn
+</a>
+<a href="mailto:evaamuthoni@gmail.com" class="contact-icon">
+    <i class="fas fa-envelope"></i> Email
+</a>
+</div>
+
+</div>
+
+<div class="education-section">
+<h3> Education</h3>
+<div class="timeline">
+
+    <div class="timeline-item">
+    <div class="circle"></div>
+    <div class="timeline-content">
+        <h4>BSc. in Information Technology</h4>
+        <p><strong>JKUAT, Kenya</strong> — 2024 – Present</p>
+        <p>Currently in 2nd year, learning software development, systems security, databases, and networks in a structured academic environment.</p>
+    </div>
+    </div>
+
+    <div class="timeline-item">
+    <div class="circle"></div>
+    <div class="timeline-content">
+        <h4>Software Engineering</h4>
+        <p><strong>Power Learn Project</strong> — 2024 – Present</p>
+        <p>Focused on Python, web development, cybersecurity, and version control with hands-on real-world project exposure.</p>
+    </div>
+    </div>
+
+    <div class="timeline-item">
+    <div class="circle"></div>
+    <div class="timeline-content">
+        <h4>AI Career Essentials</h4>
+        <p><strong>ALX</strong> — Completed 2024</p>
+        <p>Covered AI fundamentals, responsible use, and career pathways in artificial intelligence.</p>
+    </div>
+    </div>
+
+    <div class="timeline-item">
+    <div class="circle"></div>
+    <div class="timeline-content">
+        <h4>Graphic Design Fundamentals</h4>
+        <p><strong>Feb – May 2023</strong></p>
+        <p>Explored branding, layout, and digital creativity using tools like Adobe Illustrator & Photoshop.</p>
+    </div>
+    </div>
+
+</div>
+</div>
+<div class="skills-section">
+<h3>Skills & Tools</h3>
+
+<div class="skills-row">
+    <div class="skills-category">
+    <h4 class="category-title"> Technical Skills</h4>
+    <p class="category-desc">Languages, tools, and platforms I use to analyze, secure, and automate systems.</p>
+    <div class="skills-grid">
+        <span class="skill orbitron">Python</span>
+                <span class="skill orbitron">Burp Suite</span>
+
+        <span class="skill mono">Wireshark</span>
+        <span class="skill poppins">Nmap</span>
+        <span class="skill orbitron">Shell Scripting</span>
+        <span class="skill poppins">Networking</span>
+        <span class="skill mono">Linux</span>
+    </div>
+    </div>
+
+    <div class="skills-divider"></div>
+
+    <div class="skills-category">
+    <h4 class="category-title"> Design & Dev Tools</h4>
+    <p class="category-desc">Design and development tools I use for user interfaces, collaboration, and version control.</p>
+    <div class="skills-grid">
+        <span class="skill mono">HTML</span>
+        <span class="skill mono">CSS</span>
+        <span class="skill orbitron">Git & GitHub</span>
+        <span class="skill poppins">Figma</span>
+        <span class="skill mono">Adobe Illustrator</span>
+    </div>
+    </div>
+</div>
+</div>
+<div class="experience-section">
+<h3>💼 Experience</h3>
+
+<div class="experience-timeline">
+
+    <div class="experience-item left">
+    <h4 class="role-title">Freelance Cybersecurity Analyst</h4>
+    <p class="org-time">Remote · 2023 — Present</p>
+    <p class="role-desc">Conducted vulnerability assessments, tested systems with tools like Nmap & Burp Suite, and helped small businesses strengthen digital defenses.</p>
+    </div>
+
+    <div class="experience-item left">
+    <h4 class="role-title">Graphic Designer Intern</h4>
+    <p class="org-time">Creative Studio · Feb – May 2023</p>
+    <p class="role-desc">Designed logos, posters, and social media graphics using Adobe Illustrator & Photoshop. Learned the foundations of visual communication.</p>
+    </div>
+
+    <div class="experience-item right">
+    <h4 class="role-title">Open Source Contributor</h4>
+    <p class="org-time">GitHub · Ongoing</p>
+    <p class="role-desc">Contributed to beginner-friendly ethical hacking and documentation projects. Gained experience using Git, CLI tools, and collaborative workflows.</p>
+    </div>
+
+</div>
+</div>
+
+
+
+</body>
+</html>
